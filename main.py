@@ -100,11 +100,11 @@ def main():
     t = n-1
     fluxo_minimo = float("Inf")
     caminho = [-1] * n
+    visitados = [False] * n
     for x in range(n-1):
         residual = copia_matriz(grafo)
         fluxo = ff(residual, x, t)
         if(fluxo < fluxo_minimo):
-            visitados = [False] * n
             visitados = dfs(residual, caminho, x, t)[1]
             fluxo_minimo = fluxo
 
@@ -115,8 +115,7 @@ def main():
     s = []
     for n in range(len(visitados)):
         if(visitados[n]):
-            #s.append( str(n) )
-            print(n, end=" ")
+            s.append( str(n) )            
     print(' '.join(s))
 
     #Peso do corte
