@@ -80,7 +80,7 @@ def ff(grafo, s, t):
 
 def main():
     dim = []
-    dim = input("vertices e arestas: ").split(" ")
+    dim = input().split(" ")
     n = int(dim[0]) #numero de vertices
     m = int(dim[1]) #numero de arestas
 
@@ -90,7 +90,7 @@ def main():
         grafo.append([0] * (n))
 
     for i in range(m):
-        arestas = input("u, v, w: ").split(" ")
+        arestas = input().split(" ")
         u = int( arestas[0] )
         v = int( arestas[1] )
         w = int( arestas[2] )
@@ -100,12 +100,11 @@ def main():
     t = n-1
     fluxo_minimo = float("Inf")
     caminho = [-1] * n
-    visitados = [False] * n
     for x in range(n-1):
-        print("o x: ", x)
         residual = copia_matriz(grafo)
         fluxo = ff(residual, x, t)
         if(fluxo < fluxo_minimo):
+            visitados = [False] * n
             visitados = dfs(residual, caminho, x, t)[1]
             fluxo_minimo = fluxo
 
@@ -116,7 +115,8 @@ def main():
     s = []
     for n in range(len(visitados)):
         if(visitados[n]):
-            s.append( str(n) )
+            #s.append( str(n) )
+            print(n, end=" ")
     print(' '.join(s))
 
     #Peso do corte
